@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Fitness Tracker — Verified</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="hero">
+  <div class="hero-inner">
+    <h1>Fitness Tracker</h1>
+    <p>Log workouts, filter by date/type, and track your weekly progress.</p>
+    <div class="hero-actions">
+      <button id="btnCheck" class="btn ghost">Check API Health</button>
+      <span id="healthBadge" class="badge">Unknown</span>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <section class="cards">
+    <div class="card"><div class="card-title">Total Workouts</div><div id="totalWorkouts" class="card-value">0</div></div>
+    <div class="card"><div class="card-title">Total Minutes</div><div id="totalMinutes" class="card-value">0</div></div>
+    <div class="card"><div class="card-title">Total Calories</div><div id="totalCalories" class="card-value">0</div></div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-header"><h2>Add Workout</h2></div>
+    <form id="workoutForm" class="grid">
+      <label><span>Date</span><input type="date" id="date" required></label>
+      <label><span>Type</span>
+        <select id="type" required>
+          <option>Running</option><option>Walking</option><option>Cycling</option>
+          <option>Gym</option><option>Yoga</option><option>Other</option>
+        </select>
+      </label>
+      <label><span>Duration (min)</span><input type="number" id="duration" min="1" required placeholder="30"></label>
+      <label><span>Calories</span><input type="number" id="calories" min="0" placeholder="optional"></label>
+      <label class="full"><span>Notes</span><input type="text" id="notes" placeholder="How did it feel?"></label>
+      <button class="btn primary" type="submit">Save</button>
+      <button class="btn ghost" type="reset">Clear</button>
+    </form>
+  </section>
+
+  <section class="panel">
+    <div class="panel-header">
+      <h2>Workouts</h2>
+      <div class="filters">
+        <label><span>Type</span>
+          <select id="filterType"><option>All</option><option>Running</option><option>Walking</option><option>Cycling</option><option>Gym</option><option>Yoga</option><option>Other</option></select>
+        </label>
+        <label><span>From</span><input id="filterFrom" type="date"></label>
+        <label><span>To</span><input id="filterTo" type="date"></label>
+        <button id="applyFilters" class="btn">Apply</button>
+        <button id="clearFilters" class="btn ghost">Clear</button>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table id="workoutsTable">
+        <thead><tr><th>Date</th><th>Type</th><th>Duration</th><th>Calories</th><th>Notes</th><th>Actions</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-header"><h2>Last 7 Days (Minutes)</h2></div>
+    <canvas id="chart" height="140"></canvas>
+  </section>
+</main>
+
+<footer class="footer"><p>Full Stack Internship Project</p></footer>
+
+<div id="toast" class="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
